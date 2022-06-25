@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'cdnlines.html' %}
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+
+          <strong>{{article.title}}</strong><br>
+          <strong>Created By</strong>   : {{article.author |capfirst}}<br>
+        <p>  {{article.body}}</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </body>
+</html>

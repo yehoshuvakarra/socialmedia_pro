@@ -1,0 +1,93 @@
+1.django-admin startproject SocialMediaApp
+2.python manage.py startapp SocialMediaApp
+3.configure the App name templates and database in side the settings.py
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'SocialMediaApp'	--->adding the Appname inside the Installed Apps
+]
+
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR,'templates')], -->adding templates path
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+-->configuring the Database inside the settings.py file
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'socialmediadb',
+        'USER':'root',
+        'PASSWORD':'root',
+        'PORT':9010
+    }
+}
+
+4.creting Models inside the SocialMediaApp -->models.py
+
+	from django.db import models
+from django.contrib.auth.models import User
+
+# Create your models here.
+class Article(models.Model):
+    title = models.CharField(max_length=100)
+    slug = models.CharField(max_length=100)
+    # ForeignKey many to one relationship, a single user can give multiple comments
+    author = models.ForeignKey(User, on_delete = models.CASCADE) #user is the default table for to store our details
+    created_date = models.DateField(max_length=50)
+    body = models.CharField(max_length=500)
+
+
+5.import pymysql inside the SocialMediaProject __init__.py
+	import pymysql
+	pymysql.install_as_MySQLdb()
+
+6.run makemigrations to create the migration file
+	python manage.py makemigrations
+
+7.run migrate to create model in database
+	python manage.py migrate
+
+8.to go to admin interface create superuser
+
+	python manage.py createsuperuser
+
+Username (leave blank to use 'yehos'): yehoshuva
+Email address:
+Password:abcd@123
+Password (again):abcd@123
+Superuser created successfully.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
